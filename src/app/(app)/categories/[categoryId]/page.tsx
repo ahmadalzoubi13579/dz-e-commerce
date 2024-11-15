@@ -8,6 +8,7 @@ import { PageProps } from '~/src/types/next';
 // it should list all products of that category
 export default async function CategoryPage(props: PageProps) {
   const { categoryId } = props.params;
+  const { slug } = props.searchParams;
   const queryClient = await prefetchGetCategoryDetailsQuery({
     pathParams: {
       id: categoryId,
@@ -16,7 +17,7 @@ export default async function CategoryPage(props: PageProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CategoryDetails id={categoryId} />
+      <CategoryDetails id={categoryId} slug={slug as string} />
     </HydrationBoundary>
   );
 }

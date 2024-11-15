@@ -14,6 +14,8 @@ const OrderDetails: FC<OrderDetailsProps> = ({ id }) => {
     },
   });
 
+  console.log(data, isFetching);
+
   return <div>order details page</div>;
 };
 

@@ -4,6 +4,10 @@ export interface GetProductsResponse {
   data: Product[];
 }
 
+export interface GetProductsQueryParams {
+  category: string;
+}
+
 export interface GetProductDetailsResponse {
   data: Product;
 }

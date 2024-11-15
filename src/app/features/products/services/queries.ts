@@ -1,12 +1,12 @@
 import { productsUrl } from './configs';
 import { createPrefetchQueryService, createQueryService } from '~/src/lib/react-query';
-import { GetProductDetailsPathParams, GetProductDetailsResponse, GetProductsResponse } from './models';
+import { GetProductDetailsPathParams, GetProductDetailsResponse, GetProductsQueryParams, GetProductsResponse } from './models';
 
-const prefetchGetProductsQuery = createPrefetchQueryService<GetProductsResponse>({
+const prefetchGetProductsQuery = createPrefetchQueryService<GetProductsResponse, null, GetProductsQueryParams>({
   url: productsUrl,
 });
 
-const useGetProductsQuery = createQueryService<GetProductsResponse>({
+const useGetProductsQuery = createQueryService<GetProductsResponse, null, GetProductsQueryParams>({
   url: productsUrl,
 });
 

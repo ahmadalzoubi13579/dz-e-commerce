@@ -3,7 +3,7 @@ import { Product } from '~/src/types/app';
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '~/src/components/ui/button';
-import { ArrowRight, CirclePlus, ShoppingBag } from 'lucide-react';
+import { ArrowRight, CirclePlus } from 'lucide-react';
 import Link from 'next/link';
 import { PATHS } from '~/src/app/shared/constants/paths';
 
@@ -28,7 +28,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         </CardDescription>
       </CardHeader>
       <CardContent className='mt-auto'>
-        <ImageLoader src={images[0]} alt={`${name} image`} />
+        <ImageLoader src={images[0]} alt={`${name} product image`} />
       </CardContent>
       <CardFooter className='justify-between'>
         <TooltipProvider>
