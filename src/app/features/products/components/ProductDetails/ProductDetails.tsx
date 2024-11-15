@@ -4,6 +4,8 @@ import { FC } from 'react';
 import { useGetProductDetailsQuery } from '../../services/queries';
 import { Badge } from '~/src/components/ui/badge';
 import { AlbumGrid } from '~/src/app/shared/components/AlbumGrid';
+import { Button } from '~/src/components/ui/button';
+import { ShoppingBasket } from 'lucide-react';
 
 interface ProductDetailsProps {
   id: string;
@@ -42,9 +44,15 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
 
       <AlbumGrid images={images} />
 
-      <div className='flex items-center space-x-2'>
-        <h3 className='text-lg'>Price: </h3>
-        <span>{price.amount.toFixed(2)} $</span>
+      <div className='flex flex-col items-center'>
+        <div className='flex items-center space-x-2'>
+          <h3 className='text-lg'>Price: </h3>
+          <span>{price.amount.toFixed(2)} $</span>
+        </div>
+        <Button>
+          <ShoppingBasket />
+          <span>Add to Cart</span>
+        </Button>
       </div>
     </section>
   );
