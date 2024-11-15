@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { Umbrella } from './shared/components/Umbrella';
+import { ReactQueryProvider } from './shared/components/ReactQueryProvider';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Umbrella>{children}</Umbrella>
+        <ReactQueryProvider>
+          <Umbrella>{children}</Umbrella>
+        </ReactQueryProvider>
       </body>
     </html>
   );
