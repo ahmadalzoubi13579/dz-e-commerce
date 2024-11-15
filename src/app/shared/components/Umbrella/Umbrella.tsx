@@ -6,7 +6,7 @@ import { Footer } from '../Footer';
 
 const Umbrella: FC<ContainerProps> = ({ children }) => {
   return (
-    <div className='bg-gray-100'>
+    <div>
       <div className='container mx-auto min-h-screen flex flex-col p-6 text-center'>
         <Header />
         <Main>{children}</Main>

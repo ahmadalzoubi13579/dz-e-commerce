@@ -2,6 +2,8 @@
 
 import { FC } from 'react';
 import { useGetProductDetailsQuery } from '../../services/queries';
+import { Badge } from '~/src/components/ui/badge';
+import { AlbumGrid } from '~/src/app/shared/components/AlbumGrid';
 
 interface ProductDetailsProps {
   id: string;
@@ -14,7 +16,38 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
     },
   });
 
-  return <div>product details page</div>;
+  if (isFetching) return <h1>Loading...</h1>;
+
+  if (!data) return <h1>No Data!</h1>;
+
+  const { name, description, categories, images, price } = data.data;
+
+  return (
+    <section className='text-left space-y-5'>
+      <h1 className='text-center text-4xl'>{name}</h1>
+
+      <div>
+        <h2 className='text-2xl'>Description:</h2>
+        <p>{description}</p>
+      </div>
+
+      <div>
+        <h2 className='text-2xl'>Categories:</h2>
+        <div className='flex space-x-1 flex-wrap'>
+          {categories.map((category, index) => (
+            <Badge key={index}>{category}</Badge>
+          ))}
+        </div>
+      </div>
+
+      <AlbumGrid images={images} />
+
+      <div className='flex items-center space-x-2'>
+        <h3 className='text-lg'>Price: </h3>
+        <span>{price.amount.toFixed(2)} $</span>
+      </div>
+    </section>
+  );
 };
 
 export { ProductDetails };
