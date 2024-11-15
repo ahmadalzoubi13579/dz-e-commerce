@@ -31,7 +31,7 @@ const CategoryDetails: FC<CategoryDetailsProps> = ({ id, slug }) => {
   const { name, description, image } = categoryData.data;
 
   return (
-    <section className='text-left space-y-5'>
+    <section className='text-left space-y-5 my-5'>
       <h1 className='text-center text-4xl'>{name}</h1>
 
       <div>

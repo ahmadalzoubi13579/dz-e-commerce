@@ -30,12 +30,12 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
       <CardContent className='mt-auto'>
         <ImageLoader src={images[0]} alt={`${name} product image`} />
       </CardContent>
-      <CardFooter className='justify-between'>
+      <CardFooter className='justify-between flex-col sm:flex-row'>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger className='flex items-center space-x-1 bg-gray-950 hover:bg-gray-700 text-white px-2 py-1 rounded-md'>
               <CirclePlus />
-              <span>{price.amount.toFixed(2)} $</span>
+              <span>{price.amount.toFixed(2)}$</span>
             </TooltipTrigger>
             <TooltipContent>
               <p>Add to Cart</p>

@@ -25,7 +25,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
   const { name, description, categories, images, price } = data.data;
 
   return (
-    <section className='text-left space-y-5'>
+    <section className='text-left space-y-5 my-5'>
       <h1 className='text-center text-4xl'>{name}</h1>
 
       <div>
@@ -47,7 +47,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
       <div className='flex flex-col items-center'>
         <div className='flex items-center space-x-2'>
           <h3 className='text-lg'>Price: </h3>
-          <span>{price.amount.toFixed(2)} $</span>
+          <span>{price.amount.toFixed(2)}$</span>
         </div>
         <Button>
           <ShoppingBasket />

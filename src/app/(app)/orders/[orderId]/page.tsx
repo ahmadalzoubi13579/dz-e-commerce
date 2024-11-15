@@ -17,6 +17,4 @@ export default async function OrderPage(props: PageProps) {
       <OrderDetails id={orderId} />
     </HydrationBoundary>
   );
-
-  return <div>{OrderPage.name}</div>;
 }
