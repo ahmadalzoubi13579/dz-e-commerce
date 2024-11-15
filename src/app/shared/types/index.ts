@@ -3,3 +3,12 @@ export interface NavItemModel {
   path: string;
   icon?: React.ReactNode;
 }
+
+export enum SCREEN_BREAKPOINT {
+  XS = 0,
+  SM = 640,
+  MD = 768,
+  LG = 1024,
+  XL = 1280,
+  DXL = 1536,
+}

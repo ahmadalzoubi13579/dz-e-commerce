@@ -3,7 +3,6 @@ import { Header } from '../Header';
 import { ContainerProps } from '~/src/types/next';
 import { Main } from '../Main';
 import { Footer } from '../Footer';
-import { SideMenu } from '../SideMenu';
 
 const Umbrella: FC<ContainerProps> = ({ children }) => {
   return (
@@ -12,7 +11,6 @@ const Umbrella: FC<ContainerProps> = ({ children }) => {
         <Header />
         <Main>{children}</Main>
         <Footer />
-        {false && <SideMenu />}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { CartButton } from './CartButton';
 
 const Controls = () => {
   return (
-    <div className='flex'>
+    <div className='flex items-center'>
       <CartButton />
     </div>
   );
