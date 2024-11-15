@@ -20,7 +20,7 @@ const NavItem: FC<NavItemProps> = ({ item }) => {
   };
 
   return (
-    <Button asChild variant='link' onClick={closeSideMenu}>
+    <Button asChild variant='link' className='sm:justify-start' onClick={closeSideMenu}>
       <Link href={item.path}>{item.title}</Link>
     </Button>
   );
