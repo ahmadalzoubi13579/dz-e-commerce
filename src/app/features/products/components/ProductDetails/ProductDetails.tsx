@@ -6,6 +6,8 @@ import { Badge } from '~/src/components/ui/badge';
 import { AlbumGrid } from '~/src/app/shared/components/AlbumGrid';
 import { Button } from '~/src/components/ui/button';
 import { ShoppingBasket } from 'lucide-react';
+import { DataLoader } from '~/src/app/shared/components/DataLoader';
+import { EmptyState } from '~/src/app/shared/components/EmptyState';
 
 interface ProductDetailsProps {
   id: string;
@@ -18,9 +20,9 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
     },
   });
 
-  if (isFetching) return <h1>Loading...</h1>;
+  if (isFetching) return <DataLoader />;
 
-  if (!data) return <h1>No Data!</h1>;
+  if (!data) return <EmptyState />;
 
   const { name, description, categories, images, price } = data.data;
 

@@ -1,14 +1,16 @@
 'use client';
 
+import { DataLoader } from '~/src/app/shared/components/DataLoader';
 import { useGetCategoriesQuery } from '../../services/queries';
 import { CategoriesGrid } from '../CategoriesGrid';
+import { EmptyState } from '~/src/app/shared/components/EmptyState';
 
 const CategoriesList = () => {
   const { data, isFetching } = useGetCategoriesQuery();
 
-  if (isFetching) return <h1>Loading...</h1>;
+  if (isFetching) return <DataLoader />;
 
-  if (!data) return <h1>No Data!</h1>;
+  if (!data) return <EmptyState />;
 
   return (
     <section>

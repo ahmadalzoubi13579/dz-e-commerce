@@ -1,14 +1,16 @@
 'use client';
 
+import { DataLoader } from '~/src/app/shared/components/DataLoader';
 import { useGetProductsQuery } from '../../services/queries';
 import { ProductsGrid } from '../ProductsGrid';
+import { EmptyState } from '~/src/app/shared/components/EmptyState';
 
 const ProductsList = () => {
   const { data, isFetching } = useGetProductsQuery();
 
-  if (isFetching) return <h1>Loading...</h1>;
+  if (isFetching) return <DataLoader />;
 
-  if (!data) return <h1>No Data!</h1>;
+  if (!data) return <EmptyState />;
 
   return (
     <section>

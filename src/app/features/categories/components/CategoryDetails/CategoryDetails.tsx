@@ -5,6 +5,8 @@ import { useGetCategoryDetailsQuery } from '../../services/queries';
 import { useGetProductsQuery } from '../../../products/services/queries';
 import { ImageLoader } from '~/src/app/shared/components/ImageLoader';
 import { ProductsGrid } from '../../../products/components/ProductsGrid';
+import { DataLoader } from '~/src/app/shared/components/DataLoader';
+import { EmptyState } from '~/src/app/shared/components/EmptyState';
 
 interface CategoryDetailsProps {
   id: string;
@@ -24,9 +26,9 @@ const CategoryDetails: FC<CategoryDetailsProps> = ({ id, slug }) => {
     },
   });
 
-  if (isFetchingCategory) return <h1>Loading...</h1>;
+  if (isFetchingCategory) return <DataLoader />;
 
-  if (!categoryData) return <h1>No Data!</h1>;
+  if (!categoryData) return <EmptyState />;
 
   const { name, description, image } = categoryData.data;
 
@@ -42,9 +44,9 @@ const CategoryDetails: FC<CategoryDetailsProps> = ({ id, slug }) => {
       <ImageLoader src={image} alt={`${name} category image`} wrapperClassNames='h-96' />
 
       {isFetchingProducts ? (
-        <h2>Loading...</h2>
+        <DataLoader />
       ) : !productsData ? (
-        <h2>No Products in This Category!</h2>
+        <EmptyState title='No Products found in This Category!' />
       ) : (
         <ProductsGrid products={productsData.data} />
       )}
