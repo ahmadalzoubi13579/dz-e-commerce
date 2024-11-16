@@ -6,13 +6,22 @@ import { CartProduct } from './CartProduct';
 import { Button } from '~/src/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { PATHS } from '~/src/app/shared/constants/paths';
+import Link from 'next/link';
 
 const CartDetails = () => {
   const router = useRouter();
 
   const { products } = useCartContext();
 
-  if (products.length === 0) return <EmptyState title='No Products in cart!' />;
+  if (products.length === 0)
+    return (
+      <div>
+        <EmptyState title='No Products in cart!' />
+        <Button asChild>
+          <Link href={PATHS.PRODUCTS}>Browse Products</Link>
+        </Button>
+      </div>
+    );
 
   return (
     <section className='text-left my-5'>

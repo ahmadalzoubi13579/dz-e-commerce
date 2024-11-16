@@ -11,6 +11,7 @@ import { useToast } from '~/src/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { PATHS } from '~/src/app/shared/constants/paths';
 import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 const CheckoutDetails = () => {
   const router = useRouter();
@@ -58,7 +59,15 @@ const CheckoutDetails = () => {
     );
   };
 
-  if (products.length === 0) return <EmptyState title='No Products in cart to make order!' />;
+  if (products.length === 0)
+    return (
+      <div>
+        <EmptyState title='No Products in cart to make order!' />
+        <Button asChild>
+          <Link href={PATHS.PRODUCTS}>Browse Products</Link>
+        </Button>
+      </div>
+    );
 
   return (
     <section className='text-left my-5'>
