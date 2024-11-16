@@ -8,22 +8,24 @@ import { Button } from '~/src/components/ui/button';
 import { ShoppingBasket } from 'lucide-react';
 import { DataLoader } from '~/src/app/shared/components/DataLoader';
 import { EmptyState } from '~/src/app/shared/components/EmptyState';
+import { isString } from '~/src/app/shared/helpers/is-string';
+import { useErrorToast } from '~/src/app/shared/hooks/useErrorToast';
 
 interface ProductDetailsProps {
   id: string;
 }
 
 const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
-  const { data, isFetching } = useGetProductDetailsQuery({
+  const { data, isFetching, isError } = useGetProductDetailsQuery({
     pathParams: {
       id,
     },
   });
 
+  useErrorToast(isError);
+
   if (isFetching) return <DataLoader />;
-
-  if (!data) return <EmptyState />;
-
+  if (!data || isString(data)) return <EmptyState />;
   const { name, description, categories, images, price } = data.data;
 
   return (

@@ -1,4 +1,4 @@
-import { QueryClientConfig } from '@tanstack/react-query';
+import { QueryCache, QueryClientConfig } from '@tanstack/react-query';
 
 const customQueryClientConfigs: QueryClientConfig = {
   defaultOptions: {
@@ -7,6 +7,11 @@ const customQueryClientConfigs: QueryClientConfig = {
       refetchOnWindowFocus: false,
     },
   },
+  queryCache: new QueryCache({
+    onError: e => {
+      console.log('error: ', e.message);
+    },
+  }),
 };
 
 export { customQueryClientConfigs };

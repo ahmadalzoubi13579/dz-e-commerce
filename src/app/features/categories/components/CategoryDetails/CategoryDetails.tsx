@@ -7,6 +7,8 @@ import { ImageLoader } from '~/src/app/shared/components/ImageLoader';
 import { ProductsGrid } from '../../../products/components/ProductsGrid';
 import { DataLoader } from '~/src/app/shared/components/DataLoader';
 import { EmptyState } from '~/src/app/shared/components/EmptyState';
+import { isString } from '~/src/app/shared/helpers/is-string';
+import { useErrorToast } from '~/src/app/shared/hooks/useErrorToast';
 
 interface CategoryDetailsProps {
   id: string;
@@ -14,21 +16,32 @@ interface CategoryDetailsProps {
 }
 
 const CategoryDetails: FC<CategoryDetailsProps> = ({ id, slug }) => {
-  const { data: categoryData, isFetching: isFetchingCategory } = useGetCategoryDetailsQuery({
+  const {
+    data: categoryData,
+    isFetching: isFetchingCategory,
+    isError: isErrorCategory,
+  } = useGetCategoryDetailsQuery({
     pathParams: {
       id,
     },
   });
 
-  const { data: productsData, isFetching: isFetchingProducts } = useGetProductsQuery({
+  const {
+    data: productsData,
+    isFetching: isFetchingProducts,
+    isError: isErrorProducts,
+  } = useGetProductsQuery({
     queryParams: {
       category: slug,
     },
   });
 
+  useErrorToast(isErrorCategory);
+  useErrorToast(isErrorProducts, "Oops! Something went wrong while fetching category's products. Please try again later.");
+
   if (isFetchingCategory) return <DataLoader />;
 
-  if (!categoryData) return <EmptyState />;
+  if (!categoryData || isString(categoryData)) return <EmptyState />;
 
   const { name, description, image } = categoryData.data;
 
@@ -45,7 +58,7 @@ const CategoryDetails: FC<CategoryDetailsProps> = ({ id, slug }) => {
 
       {isFetchingProducts ? (
         <DataLoader />
-      ) : !productsData ? (
+      ) : !productsData || isString(productsData) ? (
         <EmptyState title='No Products found in This Category!' />
       ) : (
         <ProductsGrid products={productsData.data} />

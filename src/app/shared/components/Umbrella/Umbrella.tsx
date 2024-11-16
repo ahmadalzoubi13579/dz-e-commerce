@@ -3,6 +3,7 @@ import { Header } from '../Header';
 import { ContainerProps } from '~/src/types/next';
 import { Main } from '../Main';
 import { Footer } from '../Footer';
+import { Toaster } from '~/src/components/ui/toaster';
 
 const Umbrella: FC<ContainerProps> = ({ children }) => {
   return (
@@ -12,6 +13,7 @@ const Umbrella: FC<ContainerProps> = ({ children }) => {
         <Main>{children}</Main>
         <Footer />
       </div>
+      <Toaster />
     </div>
   );
 };
