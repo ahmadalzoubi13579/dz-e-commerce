@@ -10,12 +10,21 @@ import { DataLoader } from '~/src/app/shared/components/DataLoader';
 import { EmptyState } from '~/src/app/shared/components/EmptyState';
 import { isString } from '~/src/app/shared/helpers/is-string';
 import { useErrorToast } from '~/src/app/shared/hooks/useErrorToast';
+import { useCartContext } from '../../../checkout/context/CartContext';
+import { useToast } from '~/src/hooks/use-toast';
+import { useRouter } from 'next/navigation';
+import { ToastAction } from '~/src/components/ui/toast';
+import { PATHS } from '~/src/app/shared/constants/paths';
 
 interface ProductDetailsProps {
   id: string;
 }
 
 const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const { incProduct } = useCartContext();
   const { data, isFetching, isError } = useGetProductDetailsQuery({
     pathParams: {
       id,
@@ -27,6 +36,23 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
   if (isFetching) return <DataLoader />;
   if (!data || isString(data)) return <EmptyState />;
   const { name, description, categories, images, price } = data.data;
+
+  const handleAddClick = () => {
+    toast({
+      title: `${name} added to cart`,
+      action: (
+        <ToastAction altText='Go To Cart' onClick={() => router.push(PATHS.CART)}>
+          Go To Cart
+        </ToastAction>
+      ),
+    });
+    incProduct({
+      id,
+      name,
+      image: images[0],
+      price: price.amount,
+    });
+  };
 
   return (
     <section className='text-left space-y-5 my-5'>
@@ -53,7 +79,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ id }) => {
           <h3 className='text-lg'>Price: </h3>
           <span>{price.amount.toFixed(2)}$</span>
         </div>
-        <Button>
+        <Button className='mt-3' onClick={handleAddClick}>
           <ShoppingBasket />
           <span>Add to Cart</span>
         </Button>

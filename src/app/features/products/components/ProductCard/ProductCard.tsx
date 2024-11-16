@@ -27,7 +27,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     toast({
       title: `${name} added to cart`,
       action: (
-        <ToastAction altText='Go To Cart' onClick={() => router.push(`${PATHS.CART}`)}>
+        <ToastAction altText='Go To Cart' onClick={() => router.push(PATHS.CART)}>
           Go To Cart
         </ToastAction>
       ),

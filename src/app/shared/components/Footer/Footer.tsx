@@ -1,5 +1,5 @@
 const Footer = () => {
-  return <footer className='bg-yellow-200 mt-auto'>Footer</footer>;
+  return <footer className='mt-auto'>© Copyright 2024 DZ Store</footer>;
 };
 
 export { Footer };

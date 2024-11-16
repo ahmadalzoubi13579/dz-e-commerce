@@ -8,7 +8,7 @@ import { Toaster } from '~/src/components/ui/toaster';
 const Umbrella: FC<ContainerProps> = ({ children }) => {
   return (
     <div>
-      <div className='container mx-auto min-h-screen flex flex-col p-6 text-center'>
+      <div className='container mx-auto min-h-screen flex flex-col p-6 pb-0 text-center'>
         <Header />
         <Main>{children}</Main>
         <Footer />

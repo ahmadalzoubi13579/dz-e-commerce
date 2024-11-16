@@ -8,7 +8,7 @@ interface OrderCardProps {
 }
 
 const OrderCard: FC<OrderCardProps> = ({ order }) => {
-  const { id, cart, status, timestamp } = order;
+  const { id, cart, timestamp } = order;
   const orderDate = new Date(timestamp as Date).toDateString();
 
   return (
