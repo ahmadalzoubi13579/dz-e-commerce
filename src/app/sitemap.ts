@@ -18,13 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const res = await fetch(productsListUrl);
   const products: GetProductsResponse = await res.json();
   const productsSitemap: MetadataRoute.Sitemap = products?.data
-    ? products.data.slice(0, 20).map(productItem => ({
+    ? products.data.slice(0, 0).map(productItem => ({
         url: `${currentDomain}${PATHS.PRODUCTS}/${productItem.id}`,
       }))
     : [];
 
-  // sitemap for dynamic routes ex. categories/:id (first 20 route)
-  // like previous...
+  // sitemap for dynamic routes ex. categories/:id (first 20 route), orders/:id all like previous one, ect.
 
   const completeSitemap: MetadataRoute.Sitemap = [...basicSitemap, ...productsSitemap];
 

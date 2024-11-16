@@ -13,3 +13,9 @@ export const BASE_URL = 'http://localhost:3000/';
 export const APP_ENV: APP_ENV_MODE = 'dev';
 
 export const APP_VERSION = '1.0.0';
+
+// get this from your google search console account for SEO optimization
+export const GOOGLE_SITE_VERIFICATION = '';
+
+// this is recommended by google for SEO optimization
+export const GOOGLE_SERP_LENGTH = 160;
