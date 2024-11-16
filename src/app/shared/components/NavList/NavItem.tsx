@@ -4,19 +4,17 @@ import { FC } from 'react';
 import { NavItemModel } from '../../types';
 import { Button } from '~/src/components/ui/button';
 import Link from 'next/link';
-import { useSideMenuStore } from '../../stores/useSideMenuStore';
+import { useSideMenuContext } from '../../context/SideMenuContext';
 
 interface NavItemProps {
   item: NavItemModel;
 }
 
 const NavItem: FC<NavItemProps> = ({ item }) => {
-  const { setSideMenu } = useSideMenuStore();
+  const { setSideMenu } = useSideMenuContext();
 
   const closeSideMenu = () => {
-    setSideMenu({
-      isOpen: false,
-    });
+    setSideMenu(false);
   };
 
   return (

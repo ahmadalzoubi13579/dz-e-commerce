@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { Umbrella } from './shared/components/Umbrella';
 import { ReactQueryProvider } from './shared/components/ReactQueryProvider';
+import { SideMenProvider } from './shared/context/SideMenuContext';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -34,7 +35,9 @@ export default function RootLayout({
         }}
       >
         <ReactQueryProvider>
-          <Umbrella>{children}</Umbrella>
+          <SideMenProvider>
+            <Umbrella>{children}</Umbrella>
+          </SideMenProvider>
         </ReactQueryProvider>
       </body>
     </html>

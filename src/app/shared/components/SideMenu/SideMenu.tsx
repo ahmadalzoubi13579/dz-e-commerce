@@ -6,28 +6,30 @@ import { Menu } from 'lucide-react';
 import { useScreenSize } from '../../hooks/useScreenSize';
 import { useEffect } from 'react';
 import { SCREEN_BREAKPOINT } from '../../types';
-import { useSideMenuStore } from '../../stores/useSideMenuStore';
+import { useSideMenuContext } from '../../context/SideMenuContext';
 
 const SideMenu = () => {
-  const { sideMenu, setSideMenu } = useSideMenuStore();
+  const { isSideMenuOpen, toggleSideMenu, setSideMenu } = useSideMenuContext();
+
   const { screenSize } = useScreenSize();
 
-  const toggleSideMenu = () =>
-    setSideMenu(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+  const toggleSheet = () => {
+    toggleSideMenu();
+  };
+
+  const closeSheet = () => {
+    setSideMenu(false);
+  };
 
   useEffect(() => {
     if (screenSize >= SCREEN_BREAKPOINT.MD) {
-      setSideMenu({
-        isOpen: false,
-      });
+      closeSheet();
     }
   }, [screenSize]);
 
   return (
     <div className='md:hidden'>
-      <Sheet open={sideMenu.isOpen} onOpenChange={toggleSideMenu}>
+      <Sheet open={isSideMenuOpen} onOpenChange={toggleSheet}>
         <SheetTrigger>
           <Menu />
         </SheetTrigger>
