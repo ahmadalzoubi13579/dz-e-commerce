@@ -12,3 +12,5 @@ export enum SCREEN_BREAKPOINT {
   XL = 1280,
   DXL = 1536,
 }
+
+export type APP_ENV_MODE = 'dev' | 'qa' | 'prod';
