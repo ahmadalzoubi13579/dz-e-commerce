@@ -25,6 +25,7 @@ const SideMenu = () => {
     if (screenSize >= SCREEN_BREAKPOINT.MD) {
       closeSheet();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screenSize]);
 
   return (

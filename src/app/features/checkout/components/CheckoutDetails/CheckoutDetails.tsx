@@ -22,10 +22,12 @@ const CheckoutDetails = () => {
   const productsStr = JSON.stringify(products);
   const totalItems = useMemo(
     () => products.reduce((accumulator, item) => accumulator + (item.quantity as number), 0),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [productsStr],
   );
   const totalPrice = useMemo(
     () => products.reduce((accumulator, item) => accumulator + (item.quantity as number) * item.price, 0),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [productsStr],
   );
 
