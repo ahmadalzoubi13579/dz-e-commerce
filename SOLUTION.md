@@ -4,6 +4,8 @@
 
 #### Kindly find DZ E-Commerce Docs below 🚀⚛️
 
+#### Note: this project is public because my account is restricted from creating private repos on Github.
+
 ## Project structure & Thought process 🏗️
 
 - I used `feature based structure` as project's files and folders structure where each `feature` and all of its related stuff lay inside separate folder under `src/app/features/` folder, and there is `src/app/shared/` folder that includes all the stuff that is shared between multiple features.
