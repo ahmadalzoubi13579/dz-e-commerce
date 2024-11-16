@@ -27,7 +27,7 @@ const CartDetails = () => {
       </div>
 
       <div className='flex justify-center mt-20'>
-        <Button onClick={() => router.push(`${PATHS.CHECKOUT}`)}>Go To Checkout</Button>
+        <Button onClick={() => router.push(PATHS.CHECKOUT)}>Go To Checkout</Button>
       </div>
     </section>
   );

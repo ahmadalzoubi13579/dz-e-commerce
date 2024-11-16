@@ -33,7 +33,7 @@ const OrderCard: FC<OrderCardProps> = ({ order }) => {
         <span className='mt-1'>Tax: {(cart.tax * cart.subtotal.amount).toFixed(2)}$</span>
       </CardContent>
       <CardFooter className='flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-1'>
-        <span>Total Price:</span>
+        <span>Total Price with Tax:</span>
         <span>{cart.total.amount.toFixed(2)}$</span>
       </CardFooter>
     </Card>

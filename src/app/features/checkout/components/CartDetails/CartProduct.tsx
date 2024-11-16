@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { ImageLoader } from '~/src/app/shared/components/ImageLoader';
 import { CartItem } from '../../context/CartContext/models';
@@ -39,7 +39,6 @@ const CartProduct: FC<CartProductProps> = ({ cartProduct }) => {
         <CardTitle>
           <h2 className='line-clamp-2'>{name}</h2>
         </CardTitle>
-        <CardDescription></CardDescription>
       </CardHeader>
       <CardContent className='mt-auto'>
         <ImageLoader src={image} alt={`${name} product image`} />
