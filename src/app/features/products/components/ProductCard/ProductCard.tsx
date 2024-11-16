@@ -7,6 +7,9 @@ import { ImageLoader } from '~/src/app/shared/components/ImageLoader';
 import { InfoFooter } from './InfoFooter';
 import { useCartContext } from '../../../checkout/context/CartContext';
 import { useToast } from '~/src/hooks/use-toast';
+import { ToastAction } from '~/src/components/ui/toast';
+import { useRouter } from 'next/navigation';
+import { PATHS } from '~/src/app/shared/constants/paths';
 
 interface ProductCardProps {
   product: Product;
@@ -15,12 +18,19 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const { id, name, description, images, price } = product;
 
+  const router = useRouter();
+
   const { incProduct } = useCartContext();
   const { toast } = useToast();
 
   const handleAddClick = () => {
     toast({
       title: `${name} added to cart`,
+      action: (
+        <ToastAction altText='Go To Cart' onClick={() => router.push(`${PATHS.CART}`)}>
+          Go To Cart
+        </ToastAction>
+      ),
     });
     incProduct({
       id,

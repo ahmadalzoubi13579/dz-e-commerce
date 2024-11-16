@@ -2,9 +2,10 @@
 
 import { createContext } from 'react';
 import { CartItem, CartModel } from './models';
+import { getLocaleStorage } from '~/src/app/shared/helpers/locale-storage';
 
 const cart: CartModel = {
-  products: [],
+  products: getLocaleStorage('cart') ?? [],
 };
 
 const CartContext = createContext({

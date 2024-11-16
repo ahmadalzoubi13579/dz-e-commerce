@@ -5,9 +5,10 @@ import { FC, useState } from 'react';
 import { ContainerProps } from '~/src/types/next';
 import { CartItem } from './models';
 import { CartContext } from './CartContext';
+import { getLocaleStorage, setLocaleStorage } from '~/src/app/shared/helpers/locale-storage';
 
 const CartProvider: FC<ContainerProps> = ({ children }) => {
-  const [products, setProducts] = useState<CartItem[]>([]); // check local storage
+  const [products, setProducts] = useState<CartItem[]>(getLocaleStorage('cart') ?? []);
 
   // console.log('cart products:', products);
 
@@ -23,8 +24,6 @@ const CartProvider: FC<ContainerProps> = ({ children }) => {
           ...newProducts[productIndex],
           quantity: newProducts[productIndex].quantity ? newProducts[productIndex].quantity + 1 : 1,
         };
-
-        return newProducts;
       } else {
         newProducts = [
           ...prevState,
@@ -33,9 +32,10 @@ const CartProvider: FC<ContainerProps> = ({ children }) => {
             quantity: 1,
           },
         ];
-
-        return newProducts;
       }
+
+      setLocaleStorage('cart', newProducts);
+      return newProducts;
     });
   };
 
@@ -54,19 +54,26 @@ const CartProvider: FC<ContainerProps> = ({ children }) => {
               ? newProducts[productIndex].quantity - 1
               : 1,
         };
-
-        return newProducts;
       } else {
-        return prevState;
+        newProducts = [...prevState];
       }
+
+      setLocaleStorage('cart', newProducts);
+      return newProducts;
     });
   };
 
   const removeProduct = (productId: string) => {
-    setProducts(prevState => prevState.filter(item => item.id !== productId));
+    setProducts(prevState => {
+      const newProducts = prevState.filter(item => item.id !== productId);
+
+      setLocaleStorage('cart', newProducts);
+      return newProducts;
+    });
   };
 
   const clearCart = () => {
+    setLocaleStorage('cart', []);
     setProducts([]);
   };
 
