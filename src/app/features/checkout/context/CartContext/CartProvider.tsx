@@ -9,25 +9,60 @@ import { CartContext } from './CartContext';
 const CartProvider: FC<ContainerProps> = ({ children }) => {
   const [products, setProducts] = useState<CartItem[]>([]); // check local storage
 
-  const addProduct = (product: CartItem) => {
+  // console.log('cart products:', products);
+
+  const incProduct = (product: Omit<CartItem, 'quantity'>) => {
     setProducts(prevState => {
       let newProducts: CartItem[] = [];
 
       const productIndex = prevState.findIndex(item => item.id === product.id);
       if (productIndex !== -1) {
         newProducts = [...prevState];
-        newProducts[productIndex].quantity = newProducts[productIndex].quantity ? ++newProducts[productIndex].quantity : 1;
+
+        newProducts[productIndex] = {
+          ...newProducts[productIndex],
+          quantity: newProducts[productIndex].quantity ? newProducts[productIndex].quantity + 1 : 1,
+        };
 
         return newProducts;
       } else {
-        newProducts = [...prevState, product];
+        newProducts = [
+          ...prevState,
+          {
+            ...product,
+            quantity: 1,
+          },
+        ];
 
         return newProducts;
       }
     });
   };
 
-  const deleteProduct = (productId: string) => {
+  const decProduct = (productId: string) => {
+    setProducts(prevState => {
+      let newProducts: CartItem[] = [];
+
+      const productIndex = prevState.findIndex(item => item.id === productId);
+      if (productIndex !== -1) {
+        newProducts = [...prevState];
+
+        newProducts[productIndex] = {
+          ...newProducts[productIndex],
+          quantity:
+            newProducts[productIndex].quantity && newProducts[productIndex].quantity >= 2
+              ? newProducts[productIndex].quantity - 1
+              : 1,
+        };
+
+        return newProducts;
+      } else {
+        return prevState;
+      }
+    });
+  };
+
+  const removeProduct = (productId: string) => {
     setProducts(prevState => prevState.filter(item => item.id !== productId));
   };
 
@@ -39,8 +74,9 @@ const CartProvider: FC<ContainerProps> = ({ children }) => {
     <CartContext.Provider
       value={{
         products,
-        addProduct,
-        deleteProduct,
+        incProduct,
+        decProduct,
+        removeProduct,
         clearCart,
       }}
     >

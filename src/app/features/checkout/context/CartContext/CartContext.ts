@@ -10,9 +10,11 @@ const cart: CartModel = {
 const CartContext = createContext({
   products: cart.products, // check local storage
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  addProduct: (product: CartItem) => {},
+  incProduct: (product: Omit<CartItem, 'quantity'>) => {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  deleteProduct: (productId: string) => {},
+  decProduct: (productId: string) => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  removeProduct: (productId: string) => {},
   clearCart: () => {},
 });
 
