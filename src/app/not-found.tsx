@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function AppNotFound() {
-  return <EmptyState title='Page Not Found!' />;
+  return <EmptyState title='404 Page Not Found!' />;
 }

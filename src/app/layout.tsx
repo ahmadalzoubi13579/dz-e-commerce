@@ -4,6 +4,7 @@ import './globals.css';
 import { Umbrella } from './shared/components/Umbrella';
 import { ReactQueryProvider } from './shared/components/ReactQueryProvider';
 import { SideMenProvider } from './shared/context/SideMenuContext';
+import { CartProvider } from './features/checkout/context/CartContext';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -36,7 +37,9 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <SideMenProvider>
-            <Umbrella>{children}</Umbrella>
+            <CartProvider>
+              <Umbrella>{children}</Umbrella>
+            </CartProvider>
           </SideMenProvider>
         </ReactQueryProvider>
       </body>

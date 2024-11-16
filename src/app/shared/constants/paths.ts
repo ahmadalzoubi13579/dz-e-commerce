@@ -3,6 +3,7 @@ enum PATHS {
   PRODUCTS = '/products',
   CATEGORIES = '/categories',
   ORDERS = '/orders',
+  CART = '/cart',
   CHECKOUT = '/checkout',
 }
 

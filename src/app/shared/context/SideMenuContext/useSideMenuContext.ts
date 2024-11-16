@@ -1,10 +1,6 @@
 import { useContext } from 'react';
-
 import { SideMenuContext } from './SideMenuContext';
 
-const useSideMenuContext = () => {
-  const sideMenu = useContext(SideMenuContext);
-  return sideMenu;
-};
+const useSideMenuContext = () => useContext(SideMenuContext);
 
 export { useSideMenuContext };

@@ -35,10 +35,9 @@ const SideMenu = () => {
         </SheetTrigger>
         <SheetContent side='left'>
           <SheetHeader>
-            <SheetTitle>Welcome to DZ Store</SheetTitle>
-            <SheetDescription>
-              <NavList />
-            </SheetDescription>
+            <SheetTitle>DZ Store</SheetTitle>
+            <SheetDescription>Welcome to DZ Store</SheetDescription>
+            <NavList />
           </SheetHeader>
         </SheetContent>
       </Sheet>
