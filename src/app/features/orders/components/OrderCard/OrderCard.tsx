@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Order } from '~/src/types/app';
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '~/src/components/ui/badge';
 
 interface OrderCardProps {
   order: Order;
@@ -17,7 +16,6 @@ const OrderCard: FC<OrderCardProps> = ({ order }) => {
       <CardHeader>
         <CardTitle className='flex flex-col sm:flex-row space-y-1 sm:space-y-0 justify-between items-center'>
           <span className='text-sm'>{orderDate}</span>
-          <Badge className='lowercase'>{status}</Badge>
         </CardTitle>
         <CardDescription className='flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-1 items-center'>
           <span>Id: </span>

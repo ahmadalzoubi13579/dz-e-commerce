@@ -50,6 +50,7 @@ const CheckoutDetails = () => {
         },
         onError: () => {
           toast({
+            variant: 'destructive',
             title: 'Oops! Something went wrong while submitting your order. Please try again later.',
           });
         },
